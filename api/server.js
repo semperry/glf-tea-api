@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -5,11 +6,12 @@ const PORT = 4000;
 const cors = require("cors");
 const mongoose = require("mongoose");
 const config = require("./DB");
+// const config = process.env.PROD_MONGODB;
 const whiteTeaRoute = require("./white-tea-routes");
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(DB, { useNewUrlParser: true })
+  .connect(config.DB, { useNewUrlParser: true })
   .then(() => {
     console.log("You have successfully connected to the GLF Tea DBase");
   })
