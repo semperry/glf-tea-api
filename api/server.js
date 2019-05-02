@@ -9,7 +9,7 @@ const whiteTeaRoute = require("./white-tea-routes");
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(config.DB, { useNewUrlParser: true })
+  .connect(DB, { useNewUrlParser: true })
   .then(() => {
     console.log("You have successfully connected to the GLF Tea DBase");
   })
