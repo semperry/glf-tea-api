@@ -1,8 +1,8 @@
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const cors = require("cors");
 const mongoose = require("mongoose");
 // const config = require("./DB");
@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/white-tea', whiteTeaRoute)
+app.use("/white-tea", whiteTeaRoute);
 
 app.listen(PORT, function() {
   console.log("Server is running on Port:", PORT);
