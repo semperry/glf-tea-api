@@ -18,8 +18,8 @@ TeaRoutes.route("/add").post(function(request, response) {
 });
 
 // GET All Request
-TeaRoutes.route("/").get(function(request, response) {
-  Tea.find(function(error, teas) {
+TeaRoutes.route("/").get((request, response) => {
+  Tea.find((error, teas) => {
     if (error) {
       console.log("GET route Error", error);
     } else {
@@ -28,24 +28,41 @@ TeaRoutes.route("/").get(function(request, response) {
   });
 });
 
+// GET white tea-collection Request
+TeaRoutes.route("/collection/white-tea").get((request, response) => {
+  Tea.find({category: "White Tea"}, (error, teas) => {
+      response.json(teas);
+  });
+});
+
+// GET black tea-collection Request
+TeaRoutes.route("/collection/black-tea").get((request, response) => {
+  Tea.find({category: "Black Tea"}, (error, teas) => {
+      response.json(teas);
+  });
+});
+
 // GET by ID Request
 TeaRoutes.route("/:id").get(function(request, response) {
   let id = request.params.id;
-  Tea.findById(id, function(err, tea) {
+  Tea.findById(id, (err, tea) => {
     response.json(tea);
   });
 });
 
 // Update route
-TeaRoutes.route("/update/:id").post(function(request, response) {
+TeaRoutes.route("/update/:id").put((request, response) => {
   Tea.findById(request.params.id, function(error, tea) {
     if (!tea) {
       response.status(404).send("data is not found");
     } else {
       tea.title = request.body.title;
-      tea.amount = request.body.amount;
+      tea.units = request.body.units;
       tea.vendor = request.body.vendor;
       tea.price = request.body.price;
+      tea.qty = request.body.qty;
+      tea.description = request.body.description;
+      tea.category = request.body.category;
 
       tea
         .save()
@@ -61,10 +78,7 @@ TeaRoutes.route("/update/:id").post(function(request, response) {
 
 // Delete route
 TeaRoutes.route("/delete/:id").delete(function(request, response) {
-  Tea.findByIdAndRemove({ _id: request.params.id }, function(
-    error,
-    tea
-  ) {
+  Tea.findByIdAndRemove({ _id: request.params.id }, function(error, tea) {
     if (error) {
       response.json(error);
     } else {
