@@ -52,9 +52,9 @@ TeaRoutes.route("/:id").get(function(request, response) {
 
 // Update route
 TeaRoutes.route("/update/:id").put((request, response) => {
-  Tea.findById(request.params.id, function(error, tea) {
+  Tea.findById(request.params.id, (error, tea) => {
     if (!tea) {
-      response.status(404).send("data is not found");
+      response.status(404).send("da-tea is not found");
     } else {
       tea.title = request.body.title;
       tea.units = request.body.units;
@@ -63,9 +63,9 @@ TeaRoutes.route("/update/:id").put((request, response) => {
       tea.qty = request.body.qty;
       tea.description = request.body.description;
       tea.category = request.body.category;
-      featured_image.featured_image = request.body.featured_image 
-      thumb_image = request.body.thumb_image
-      secondary_image = request.body.secondary_image
+      featured_image.featured_image = request.body.featured_image; 
+      thumb_image = request.body.thumb_image;
+      secondary_image = request.body.secondary_image;
 
       tea
         .save()
@@ -80,12 +80,12 @@ TeaRoutes.route("/update/:id").put((request, response) => {
 });
 
 // Delete route
-TeaRoutes.route("/delete/:id").delete(function(request, response) {
-  Tea.findByIdAndRemove({ _id: request.params.id }, function(error, tea) {
+TeaRoutes.route("/delete/:id").delete((request, response) => {
+  Tea.findByIdAndRemove({ _id: request.params.id }, (error, tea) => {
     if (error) {
       response.json(error);
     } else {
-      response.json("Successfully removed");
+      response.json("Successfully tea-moved");
     }
   });
 });
