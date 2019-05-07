@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 let Tea = new Schema(
   {
     title: {
-      type: String
+      type: String,
+      required: true
     },
     units: {
       type: String
@@ -14,13 +15,15 @@ let Tea = new Schema(
       type: String
     },
     price: {
-      type: Number
+      type: Number,
+      required: true
     },
     description: {
       type: String
     },
     qty: {
-      type: Number
+      type: Number,
+      required: true
     },
     featured_image: {
       type: String
@@ -32,7 +35,8 @@ let Tea = new Schema(
       type: String
     },
     category: {
-      type: String
+      type: String,
+      required: true
     }
   },
   {
