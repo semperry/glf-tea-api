@@ -51,7 +51,7 @@ TeaRoutes.route("/:id").get(function(request, response) {
 });
 
 // Update route
-TeaRoutes.route("/update/:id").put((request, response) => {
+TeaRoutes.route("/update/:id").post((request, response) => {
   Tea.findById(request.params.id, (error, tea) => {
     if (!tea) {
       response.status(404).send("da-tea is not found");
