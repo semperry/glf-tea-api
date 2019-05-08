@@ -63,7 +63,7 @@ TeaRoutes.route("/update/:id").post((request, response) => {
       tea.qty = request.body.qty;
       tea.description = request.body.description;
       tea.category = request.body.category;
-      tea.featured_image_url = request.body.featured_image; 
+      tea.featured_image = request.body.featured_image; 
       tea.thumb_image = request.body.thumb_image;
       tea.secondary_image = request.body.secondary_image;
 
