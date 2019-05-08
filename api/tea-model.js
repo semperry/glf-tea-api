@@ -37,6 +37,10 @@ let Tea = new Schema(
     category: {
       type: String,
       required: true
+    },
+    featured_product: {
+      type: Boolean,
+      default: false
     }
   },
   {
