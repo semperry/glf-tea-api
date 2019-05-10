@@ -26,7 +26,8 @@ let Tea = new Schema(
       required: true
     },
     featured_image: {
-      type: String
+      type: String,
+      required: true
     },
     thumb_image: {
       type: String
