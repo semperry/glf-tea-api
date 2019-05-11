@@ -2,7 +2,7 @@ const express = require("express");
 const TeaRoutes = express.Router();
 
 // Model
-let Tea = require("./tea-model");
+let Tea = require("../models/tea-model");
 
 // POST add one route
 TeaRoutes.route("/add").post(function(request, response) {

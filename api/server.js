@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 4000;
 const cors = require("cors");
 const mongoose = require("mongoose");
-const teaRoutes = require("./tea-routes");
+const teaRoutes = require("./routes/tea-routes");
+const cartRoutes = require("./routes/cart-routes")
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/tea", teaRoutes);
+app.use("/cart", cartRoutes)
 
 app.listen(PORT, function() {
   console.log("Server is running on Port:", PORT);
