@@ -5,7 +5,7 @@ const TeaRoutes = express.Router();
 let Tea = require("../models/tea-model");
 
 // POST add one route
-TeaRoutes.route("/add").post(function(request, response) {
+TeaRoutes.route("/add").post((request, response) => {
   let tea = new Tea(request.body);
   tea
     .save()
@@ -43,7 +43,7 @@ TeaRoutes.route("/collection/black-tea").get((request, response) => {
 });
 
 // GET by ID Request
-TeaRoutes.route("/:id").get(function(request, response) {
+TeaRoutes.route("/:id").get((request, response) => {
   let id = request.params.id;
   Tea.findById(id, (err, tea) => {
     response.json(tea);
