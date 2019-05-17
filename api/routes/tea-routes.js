@@ -71,10 +71,10 @@ TeaRoutes.route("/update/:id").post((request, response) => {
       tea
         .save()
         .then(tea => {
-          response.json("Updated successful-tea");
+          response.json("Updated successful-tea" + tea);
         })
         .catch(error => {
-          response.status(400).send("unable to update the da-tea-base");
+          response.status(400).send("unable to update the da-tea-base" + error);
         });
     }
   });

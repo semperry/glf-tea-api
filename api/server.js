@@ -7,6 +7,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const teaRoutes = require("./routes/tea-routes");
 const cartRoutes = require("./routes/cart-routes")
+const subRoutes = require("./routes/subscription-routes")
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 app.use("/tea", teaRoutes);
 app.use("/cart", cartRoutes)
+app.use("/subscribers", subRoutes)
 
 app.listen(PORT, function() {
   console.log("Server is running on Port:", PORT);
