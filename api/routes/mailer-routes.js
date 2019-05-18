@@ -2,7 +2,7 @@ const express = require("express");
 const MailRouter = express.Router();
 const nodemailer = require('nodemailer')
 
-MailRouter.route('/contact').post((req, res) => {
+MailRouter.route('/mailer').post((req, res) => {
   let data = req.data
 
   let smtpTransport = nodemailer.createTransport({
