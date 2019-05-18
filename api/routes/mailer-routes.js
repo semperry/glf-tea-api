@@ -3,6 +3,9 @@ const express = require("express");
 const MailRouter = express.Router();
 const nodemailer = require('nodemailer')
 
+const user = process.env.EMAIL_USER
+const pass = process.env.EMAIL_PASS
+
 MailRouter.route('/').post((req, res) => {
   let data = req.body
 
@@ -10,8 +13,8 @@ MailRouter.route('/').post((req, res) => {
     service: 'Gmail',
     port: 465,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: user,
+      pass: pass
     }
   });
 
