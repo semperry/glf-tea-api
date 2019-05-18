@@ -29,6 +29,6 @@ app.use("/cart", cartRoutes)
 app.use("/subscribers", subRoutes)
 app.use("/contact", mailRoutes)
 
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log("Server is running on Port:", PORT);
 });

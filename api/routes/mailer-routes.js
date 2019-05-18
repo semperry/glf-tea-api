@@ -34,4 +34,4 @@ MailRouter.route('/contact').post((req, res) => {
     })
 })
 
-module.exports(MailRouter)
+module.exports = MailRouter
