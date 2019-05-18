@@ -1,9 +1,10 @@
+require('dotenv').config()
 const express = require("express");
 const MailRouter = express.Router();
 const nodemailer = require('nodemailer')
 
-MailRouter.route('/mailer').post((req, res) => {
-  let data = req.data
+MailRouter.route('/').post((req, res) => {
+  let data = req.body
 
   let smtpTransport = nodemailer.createTransport({
     service: 'Gmail',

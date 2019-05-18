@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use("/tea", teaRoutes);
 app.use("/cart", cartRoutes)
 app.use("/subscribers", subRoutes)
-app.use("/contact", mailRoutes)
+app.use("/mailer", mailRoutes)
 
 app.listen(PORT, () => {
   console.log("Server is running on Port:", PORT);
