@@ -15,6 +15,10 @@ MailRouter.route('/').post((req, res) => {
     auth: {
       user: user,
       pass: pass
+    },
+    tls: {
+      // do not fail on invalid certs
+      rejectUnauthorized: false
     }
   });
 
