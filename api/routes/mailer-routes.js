@@ -15,10 +15,6 @@ MailRouter.route('/').post((req, res) => {
     auth: {
       user: user,
       pass: pass
-    },
-    tls: {
-      // do not fail on invalid certs
-      rejectUnauthorized: false
     }
   });
 
@@ -34,9 +30,9 @@ MailRouter.route('/').post((req, res) => {
   smtpTransport.sendMail(mailOptions,
     (error, response)=> {
       if(error) {
-        res.send(error)
+        res.send("Mailer Error in sendMail call: " + error)
       } else {
-        res.send('Success')
+        res.send('Success: ' + response)
       }
       smtpTransport.close()
     })
