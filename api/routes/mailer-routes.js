@@ -19,7 +19,7 @@ MailRouter.route('/').post((req, res) => {
   });
 
   let mailOptions = {
-    from: '3017productions@gmail.com',
+    from: data.email,
     to: '3017productions@gmail.com',
     subject: 'Message from Contact Form',
     html: `<p>Message from: ${data.name}</p>
@@ -30,9 +30,9 @@ MailRouter.route('/').post((req, res) => {
   smtpTransport.sendMail(mailOptions,
     (error, response)=> {
       if(error) {
-        res.send(error)
+        response.send(error)
       } else {
-        res.send('Success')
+        response.send('Success')
       }
       smtpTransport.close()
     })
