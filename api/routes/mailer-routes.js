@@ -30,9 +30,9 @@ MailRouter.route('/').post((req, res) => {
   smtpTransport.sendMail(mailOptions,
     (error, response)=> {
       if(error) {
-        response.send(error)
+        res.send(error)
       } else {
-        response.send('Success')
+        res.send('Success')
       }
       smtpTransport.close()
     })
