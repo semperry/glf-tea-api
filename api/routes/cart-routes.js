@@ -10,7 +10,7 @@ CartRouter.route("/add").post((request, response) => {
   cart
     .save()
     .then(cart => {
-      response.status(200).json(cart._id);
+      response.status(200).json(cart);
     })
     .catch(error => {
       response.status(400).send(error);
@@ -48,10 +48,10 @@ CartRouter.route("/update/:id").post((request, response) => {
       cart
         .save()
         .then(cart => {
-          response.json("Updated cart successfully" +" " + cart);
+          response.json("Updated cart successfully" + " " + cart);
         })
         .catch(error => {
-          response.status(400).send("unable to update the cart" +" " + error);
+          response.status(400).send("unable to update the cart" + " " + error);
         });
     }
   });

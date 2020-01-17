@@ -2,13 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 4000;
 const cors = require("cors");
 const mongoose = require("mongoose");
+const PORT = process.env.PORT || 4000;
+
 const teaRoutes = require("./routes/tea-routes");
-const cartRoutes = require("./routes/cart-routes")
-const subRoutes = require("./routes/subscription-routes")
-const mailRoutes = require("./routes/mailer-routes")
+const cartRoutes = require("./routes/cart-routes");
+const subRoutes = require("./routes/subscription-routes");
+const mailRoutes = require("./routes/mailer-routes");
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -25,9 +26,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/tea", teaRoutes);
-app.use("/cart", cartRoutes)
-app.use("/subscribers", subRoutes)
-app.use("/mailer", mailRoutes)
+app.use("/cart", cartRoutes);
+app.use("/subscribers", subRoutes);
+app.use("/mailer", mailRoutes);
 
 app.listen(PORT, () => {
   console.log("Server is running on Port:", PORT);

@@ -2,23 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define collection and add schema for shopping Cart
-let Cart = new Schema(
-  {
-    state: {
-      type: String,
-      default: "active"
-    },
-    products: [
-      {
-        quantity: Number,
-        title: String,
-        price: Number
-      }
-    ]
+let Cart = new Schema({
+  state: {
+    type: String,
+    default: "active"
   },
-  {
-    collection: "cart"
+  products: {
+    type: Array
   }
-);
+});
 
-module.exports = mongoose.model("Cart", Cart);
+module.exports = mongoose.model("cart", Cart);
