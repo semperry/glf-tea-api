@@ -1,3 +1,5 @@
+// TODO:
+// Check if item exists before adding to cart
 const express = require("express");
 const CartRouter = express.Router();
 
@@ -36,25 +38,66 @@ CartRouter.route("/:id").get((request, response) => {
   });
 });
 
-// Update route
-CartRouter.route("/update/:id").post((request, response) => {
-  Cart.findById(request.params.id, (error, cart) => {
-    if (!cart) {
-      response.status(404).send("cart not found");
-    } else {
-      cart.state = request.body.state;
-      cart.products = request.body.products;
-
-      cart
-        .save()
-        .then(cart => {
-          response.json("Updated cart successfully" + " " + cart);
-        })
-        .catch(error => {
-          response.status(400).send("unable to update the cart" + " " + error);
-        });
+// Add to cart route
+CartRouter.route("/add-to-cart/:id").patch((request, response) => {
+  Cart.updateOne(
+    { _id: request.params.id },
+    {
+      $push: {
+        products: request.body.product
+      }
+    },
+    (err, result) => {
+      if (err) {
+        response.status(400).send(err);
+      } else {
+        response.json("Updated cart successfully");
+      }
     }
-  });
+  );
+});
+
+// Update cart item qty
+CartRouter.route("/update-qty/:id").patch((req, res) => {
+  Cart.updateOne(
+    {
+      _id: req.params.id,
+      "products._id": req.body._id
+    },
+    {
+      $set: {
+        "products.$.quantity": req.body.quantity
+      }
+    },
+    (err, result) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.json(`Updated cart successfully: ${result}`);
+      }
+    }
+  );
+});
+
+// Delete item from cart
+CartRouter.route("/remove-from-cart/:id").patch((req, res) => {
+  Cart.updateOne(
+    {
+      _id: req.params.id
+    },
+    {
+      $pull: {
+        products: { _id: req.body._id }
+      }
+    },
+    (err, result) => {
+      if (err) {
+        res.status(404).send("No item found " + err);
+      } else {
+        res.status(200).send("Item Deleted");
+      }
+    }
+  );
 });
 
 // Delete route

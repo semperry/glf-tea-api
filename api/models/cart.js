@@ -1,3 +1,4 @@
+// TODO: Child schema for products
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
